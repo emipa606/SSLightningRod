@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef>
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+    <defName>LightningRod</defName>
+    <label>lightning rod</label>
+    <graphicData>
+      <texPath>lightning-rod</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8,8)</drawSize>
+      <shadowData>
+        <volume>(0.7,1,0.7)</volume>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Pawn</altitudeLayer>
+    <passability>Impassable</passability>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>false</castEdgeShadows>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <fillPercent>1</fillPercent>
+    <blockLight>true</blockLight>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <WorkToBuild>6000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-40</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</description>
+    <size>(1,1)</size>
+    <costStuffCount>150</costStuffCount>
+    <costList>
+      <Silver>200</Silver>
+      <Steel>35</Steel>
+      <ComponentIndustrial>5</ComponentIndustrial>
+    </costList>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <uiIconPath>lightning-rod_MenuIcon</uiIconPath>
+    <comps>
+      <li Class="SSLightningRod.CompProperties_LightningRod">
+        <compClass>SSLightningRod.CompLightningRod</compClass>
+        <cooldownSpeed>0.25</cooldownSpeed>
+        <chargeCapacity>2000</chargeCapacity>
+        <fakeZIndex>4</fakeZIndex>
+        <shortCircuitInRain>false</shortCircuitInRain>
+        <basePowerConsumption>750</basePowerConsumption>
+        <transmitsPower>true</transmitsPower>
+        <oneInXChanceHitPowerSave>4</oneInXChanceHitPowerSave>
+        <powerGainDischarge>7000</powerGainDischarge>
+        <strikesHitBase>false</strikesHitBase>
+        <cooldownPercentPowerSave>50</cooldownPercentPowerSave>
+      </li>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Breakdownable" />
+    </comps>
+    <rotatable>false</rotatable>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Misc</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <researchPrerequisites>
+      <li>Machining</li>
+    </researchPrerequisites>
+  </ThingDef>
+</Defs>
