@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/MainButtonDef[defName="Achievements"]</xpath>
+    <success>Always</success>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementTabDef>
+              <defName>Mlie_Continued</defName>
+              <label>Continued Mods</label>
+            </AchievementsExpanded.AchievementTabDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef>
+              <defName>SS_ThunderboltAndLightning</defName>
+              <label>Thunderbolt and Lightning...</label>
+              <description>Build one Lightningrod</description>
+              <tracker Class="AchievementsExpanded.BuildingTracker">
+                <def>LightningRod</def>
+                <count>1</count>
+              </tracker>
+              <texPath>Achievements/SS_ThunderboltAndLightning</texPath>
+              <points>5</points>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef>
+              <defName>SS_VeryVeryFrightening</defName>
+              <label>...Very Very Frightening</label>
+              <description>Build three Lightningrods</description>
+              <tracker Class="AchievementsExpanded.BuildingTracker">
+                <def>LightningRod</def>
+                <count>3</count>
+              </tracker>
+              <texPath>Achievements/SS_VeryVeryFrightening</texPath>
+              <points>20</points>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>
