@@ -18,7 +18,16 @@
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef Name="Mlie_AchievementParent" Abstract="true">
+              <bgtexPath>Achievements/AchievmentsBG</bgtexPath>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>SS_ThunderboltAndLightning</defName>
               <label>Thunderbolt and Lightning...</label>
               <description>Build one Lightningrod</description>
@@ -28,14 +37,13 @@
               </tracker>
               <texPath>Achievements/SS_ThunderboltAndLightning</texPath>
               <points>5</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>SS_VeryVeryFrightening</defName>
               <label>...Very Very Frightening</label>
               <description>Build three Lightningrods</description>
@@ -45,7 +53,6 @@
               </tracker>
               <texPath>Achievements/SS_VeryVeryFrightening</texPath>
               <points>20</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
