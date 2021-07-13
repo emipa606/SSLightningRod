@@ -1,5 +1,5 @@
-using RimWorld;
 using System;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -13,9 +13,11 @@ namespace SSLightningRod
 
         public SoundDef turnOnSound = SoundDefOf.Checkbox_TurnedOn;
 
+        public override SoundDef CurActivateSound => turnOnSound;
+
         public string Abbrevs(int a)
         {
-            var returnstr = "";
+            string returnstr;
             switch (a)
             {
                 case 1:
@@ -31,10 +33,9 @@ namespace SSLightningRod
                     returnstr = "PS";
                     break;
             }
+
             return returnstr;
         }
-
-        public override SoundDef CurActivateSound => turnOnSound;
 
         public override void ProcessInput(Event ev)
         {
@@ -42,12 +43,12 @@ namespace SSLightningRod
             toggleAction();
         }
 
-        public override GizmoResult GizmoOnGUI(Vector2 loc, float maxWidth)
+        public override GizmoResult GizmoOnGUI(Vector2 loc, float maxWidth, GizmoRenderParms parms)
         {
-            GizmoResult result = base.GizmoOnGUI(loc, maxWidth);
+            var result = base.GizmoOnGUI(loc, maxWidth, parms);
             var rect = new Rect(loc.x, loc.y, GetWidth(maxWidth), 75f);
             var position = new Rect(rect.x + rect.width - 24f, rect.y, 24f, 24f);
-            var modestr = Abbrevs(Mode()).ToString();
+            var modestr = Abbrevs(Mode());
             Text.Font = GameFont.Tiny;
             Widgets.Label(position, modestr);
             return result;
