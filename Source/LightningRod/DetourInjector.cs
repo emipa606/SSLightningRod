@@ -18,7 +18,7 @@ namespace SSDetours
             var Info = "WeatherEvent_LightningStrike.FireEvent";
             try
             {
-                ((Action) (() =>
+                ((Action)(() =>
                 {
                     var hinstance = new Harmony("com.spdskatr.lightningrod.detours");
                     Log.Message("SS Lightning Rod Detours: Using Harmony to Prefix and Transpiler patch " + Info);

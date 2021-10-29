@@ -18,57 +18,47 @@ namespace SSLightningRod
 
         public static bool ColonistsHaveLightningRodActive(out List<Building> activeRods, Map map)
         {
-            var result = false;
             activeRods = new List<Building>();
             foreach (var building in map.listerBuildings.allBuildingsColonist)
             {
                 var comp = building.TryGetComp<CompLightningRod>();
-                if (comp == null || !comp.notOverwhelmed || !comp.PowerOn || comp.ToggleMode == 1)
+                if (comp == null)
                 {
                     continue;
                 }
 
-                activeRods.Add(building);
-                result = true;
-            }
-
-            if (!result)
-            {
-                for (var i = 0; i < map.listerBuildings.allBuildingsColonist.Count; i++)
+                if (comp.IsBasic && Rand.Bool)
                 {
-                    var comp = map.listerBuildings.allBuildingsColonist[i].TryGetComp<CompLightningRod>();
-                    var random = new Random(i + Find.TickManager.TicksAbs);
-                    if (comp is {notOverwhelmed: true, PowerOn: true, ToggleMode: 1})
-                    {
-                        var h = random.Next(4);
-                        if (h != 0)
-                        {
-                            continue;
-                        }
+                    activeRods.Add(building);
+                    continue;
+                }
 
-                        activeRods.Add(map.listerBuildings.allBuildingsColonist[i]);
-                        result = true;
-                    }
-                    else if (comp is {notOverwhelmed: false, PowerOn: true} && comp.ToggleMode != 1)
-                    {
-                        var h = random.Next(comp.Powersavechance);
-                        if (h != 0)
-                        {
-                            continue;
-                        }
+                if (comp is { notOverwhelmed: true, PowerOn: true } && comp.ToggleMode != 1)
+                {
+                    activeRods.Add(building);
+                    continue;
+                }
 
-                        activeRods.Add(map.listerBuildings.allBuildingsColonist[i]);
-                        result = true;
-                    }
+                if (comp is { notOverwhelmed: true, PowerOn: true, ToggleMode: 1 } &&
+                    Rand.Range(1, comp.Powersavechance) == 1)
+                {
+                    activeRods.Add(building);
+                    continue;
+                }
+
+                if (comp is { notOverwhelmed: false, PowerOn: true } && comp.ToggleMode != 1 &&
+                    Rand.Range(1, comp.Powersavechance) == 1)
+                {
+                    activeRods.Add(building);
                 }
             }
 
-            _state_ = result;
-            return result;
+            _state_ = activeRods.Any();
+            return _state_;
         }
 
         [HarmonyPriority(Priority.Last)]
-        public static void Prefix(WeatherEvent_LightningStrike __instance, Map ___map, ref IntVec3 ___strikeLoc)
+        public static void Prefix(Map ___map, ref IntVec3 ___strikeLoc)
         {
             //var flash = new WeatherEvent_LightningFlash(Traverse.Create(__instance).Field("map").GetValue<Map>());
             //var map1 = Traverse.Create(__instance).Field("map").GetValue<Map>();
@@ -79,12 +69,11 @@ namespace SSLightningRod
             }
 
             var rand = new Random();
-            var num = rand.Next(activeRods.Count);
-            var target = activeRods[num];
+            var target = activeRods.RandomElement();
             var list = GenAdj.CellsOccupiedBy(target).ToList();
             var strikesHitBase = target.TryGetComp<CompLightningRod>().StrikesHitBase;
             var num1 = target.TryGetComp<CompLightningRod>().FakeZIndex;
-            var num2 = rand.Next((int) num1 - strikesHitBase);
+            var num2 = rand.Next((int)num1 - strikesHitBase);
             var intvec = list[0];
             intvec.z += num2 + strikesHitBase;
             ___strikeLoc = intvec;

@@ -32,7 +32,9 @@ namespace SSLightningRod
         public int Powersavechance => Properties.oneInXChanceHitPowerSave;
         public float PowerGainDischarge => Properties.powerGainDischarge;
         public float CooldownPercentPowerSave => Properties.cooldownPercentPowerSave;
-        private CompProperties_LightningRod Properties => (CompProperties_LightningRod) props;
+        public bool IsBasic => Properties.isBasic;
+        private CompProperties_LightningRod Properties => (CompProperties_LightningRod)props;
+
 
         public float PowerOutputFromMode()
         {
@@ -60,6 +62,11 @@ namespace SSLightningRod
         public override void CompTick()
         {
             base.CompTick();
+            if (IsBasic)
+            {
+                return;
+            }
+
             var num2 = ToggleMode == 1 ? CooldownSpeed * CooldownPercentPowerSave / 100 : CooldownSpeed;
             var num = ToggleMode == 3 ? CooldownSpeed * 4 : num2;
             LightningRodCooldown = LightningRodCooldown <= 0f ? 0f : LightningRodCooldown - num;
@@ -72,6 +79,12 @@ namespace SSLightningRod
         public void Hit()
         {
             LightningRodCooldown += 500f;
+            if (IsBasic)
+            {
+                parent.HitPoints -= parent.MaxHitPoints / 100;
+                return;
+            }
+
             if (LightningRodCooldown > ChargeCapacity)
             {
                 notOverwhelmed = false;
@@ -80,6 +93,11 @@ namespace SSLightningRod
 
         public override string CompInspectStringExtra()
         {
+            if (IsBasic)
+            {
+                return null;
+            }
+
             var str = new StringBuilder();
             var powerConsumptionAsValue = powerOutputInt * -1;
             var str1 = powerConsumptionAsValue >= 0
@@ -111,24 +129,24 @@ namespace SSLightningRod
                 case 1:
                     returnstr =
                         "Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a " +
-                        Math.Round((decimal) 100 / Powersavechance, 2) +
+                        Math.Round((decimal)100 / Powersavechance, 2) +
                         "% chance to attract a lightning bolt and cools down " + CooldownPercentPowerSave + "% slower";
                     break;
                 case 2:
                     returnstr =
                         "Normal mode(Click to change modes): Consumes a bit of power when idle, outputs enough power to sustain itself in a storm and has a 100% chance to attract a lightning bolt. Can attract lightning at a " +
-                        Math.Round((decimal) 100 / Powersavechance, 2) + "% chance when overwhelmed.";
+                        Math.Round((decimal)100 / Powersavechance, 2) + "% chance when overwhelmed.";
                     break;
                 case 3:
                     returnstr =
                         "Fast cooldown mode(Click to change modes): Cools down 4x faster than normal but consumes triple the amount of power. Has a 100% chance to attract a lightning bolt. Can attract lightning at a " +
-                        Math.Round((decimal) 100 / Powersavechance, 2) + "% chance when overwhelmed.";
+                        Math.Round((decimal)100 / Powersavechance, 2) + "% chance when overwhelmed.";
                     break;
                 default:
                     ToggleMode = 1;
                     returnstr =
                         "Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a " +
-                        Math.Round((decimal) 100 / Powersavechance, 2) +
+                        Math.Round((decimal)100 / Powersavechance, 2) +
                         "% chance to attract a lightning bolt and cools down " + CooldownPercentPowerSave + "% slower";
                     break;
             }
@@ -149,6 +167,11 @@ namespace SSLightningRod
             foreach (var c in base.CompGetGizmosExtra())
             {
                 yield return c;
+            }
+
+            if (IsBasic)
+            {
+                yield break;
             }
 
             if (parent.Faction == Faction.OfPlayer)

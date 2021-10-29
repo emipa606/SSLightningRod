@@ -34,7 +34,7 @@
             <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>SS_ThunderboltAndLightning</defName>
               <label>Thunderbolt and Lightning...</label>
-              <description>Build one Lightningrod</description>
+              <description>Build one powered Lightningrod</description>
               <tracker Class="AchievementsExpanded.BuildingTracker">
                 <def>LightningRod</def>
                 <count>1</count>
@@ -50,7 +50,7 @@
             <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>SS_VeryVeryFrightening</defName>
               <label>...Very Very Frightening</label>
-              <description>Build three Lightningrods</description>
+              <description>Build three powered Lightningrods</description>
               <tracker Class="AchievementsExpanded.BuildingTracker">
                 <def>LightningRod</def>
                 <count>3</count>

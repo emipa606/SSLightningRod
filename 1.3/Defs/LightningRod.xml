@@ -1,18 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef>
-    <category>Building</category>
-    <thingClass>Building</thingClass>
-    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
-    <selectable>true</selectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
-    <repairEffect>Repair</repairEffect>
-    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
-    <defName>LightningRod</defName>
-    <label>lightning rod</label>
+  <ThingDef Name="BaseLightningRod" ParentName="BuildingBase" Abstract="True">
     <graphicData>
-      <texPath>lightning-rod</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <shaderType>CutoutComplex</shaderType>
       <drawSize>(8,8)</drawSize>
@@ -21,30 +10,72 @@
       </shadowData>
     </graphicData>
     <altitudeLayer>Pawn</altitudeLayer>
-    <passability>Impassable</passability>
-    <blockWind>true</blockWind>
+    <passability>PassThroughOnly</passability>
+    <blockWind>false</blockWind>
     <castEdgeShadows>false</castEdgeShadows>
     <scatterableOnMapGen>false</scatterableOnMapGen>
-    <fillPercent>1</fillPercent>
+    <fillPercent>0.5</fillPercent>
     <blockLight>true</blockLight>
     <statBases>
       <MaxHitPoints>500</MaxHitPoints>
-      <WorkToBuild>6000</WorkToBuild>
       <Flammability>1.0</Flammability>
       <Beauty>-40</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
-    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</description>
     <size>(1,1)</size>
     <costStuffCount>150</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <rotatable>false</rotatable>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <designationCategory>Misc</designationCategory>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+  </ThingDef>
+  <ThingDef ParentName="BaseLightningRod">
+    <defName>LightningRodBasic</defName>
+    <label>lightning rod</label>
+    <graphicData>
+      <texPath>lightning-rod-basic</texPath>
+    </graphicData>
+    <statBases>
+      <WorkToBuild>4000</WorkToBuild>
+    </statBases>
+    <description>A basic lightning rod for map-wide protection from lightning strikes.\n\nDoes not produce power and will need repairs after extended use.</description>
+    <costList>
+      <Silver>200</Silver>
+    </costList>
+    <uiIconPath>lightning-rod-basic_MenuIcon</uiIconPath>
+    <comps>
+      <li Class="SSLightningRod.CompProperties_LightningRod">
+        <compClass>SSLightningRod.CompLightningRod</compClass>
+        <cooldownSpeed>0.25</cooldownSpeed>
+        <fakeZIndex>4</fakeZIndex>
+        <isBasic>true</isBasic>
+        <showPowerNeededIfOff>false</showPowerNeededIfOff>
+      </li>
+    </comps>
+    <researchPrerequisites>
+      <li>Smithing</li>
+    </researchPrerequisites>
+  </ThingDef>
+  <ThingDef ParentName="BaseLightningRod">
+    <defName>LightningRod</defName>
+    <label>powered lightning rod</label>
+    <graphicData>
+      <texPath>lightning-rod</texPath>
+    </graphicData>
+    <statBases>
+      <WorkToBuild>6000</WorkToBuild>
+    </statBases>
+    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</description>
     <costList>
       <Silver>200</Silver>
       <Steel>35</Steel>
       <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
-    <stuffCategories>
-      <li>Metallic</li>
-    </stuffCategories>
     <uiIconPath>lightning-rod_MenuIcon</uiIconPath>
     <comps>
       <li Class="SSLightningRod.CompProperties_LightningRod">
@@ -63,12 +94,6 @@
       <li Class="CompProperties_Flickable" />
       <li Class="CompProperties_Breakdownable" />
     </comps>
-    <rotatable>false</rotatable>
-    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
-    <designationCategory>Misc</designationCategory>
-    <placeWorkers>
-      <li>PlaceWorker_NotUnderRoof</li>
-    </placeWorkers>
     <researchPrerequisites>
       <li>Machining</li>
     </researchPrerequisites>
