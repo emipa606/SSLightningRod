@@ -5,6 +5,8 @@
 Update of Spdskatrs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=861583047
 
+- Added a basic rod, unlocked with smithing. Has a 50% chance of attracting lightning, requires no components but does not produce power. Also requires repairs after extended use.
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 
@@ -37,6 +39,7 @@ Special thanks to Sera for the amazing lightning rod texture!
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+
 
 
 

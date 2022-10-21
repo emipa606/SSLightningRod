@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SSLR.PowerConsumption>Power consumption: {0} W</SSLR.PowerConsumption>
+  <SSLR.PowerOutput>Power output: {0} W</SSLR.PowerOutput>
+  <SSLR.Cooldown>Cooldown: {0}/{1}</SSLR.Cooldown>
+  <SSLR.Standby>Standby.</SSLR.Standby>
+  <SSLR.Discharging>Discharging.</SSLR.Discharging>
+  <SSLR.Overwhelmed>Overwhelmed.</SSLR.Overwhelmed>
+  <SSLR.ChangeMode>Change Mode</SSLR.ChangeMode>
+  <SSLR.PowerSaveMode>Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a {0}% chance to attract a lightning bolt and cools down {1}% slower</SSLR.PowerSaveMode>
+  <SSLR.NormalMode>Normal mode(Click to change modes): Consumes a bit of power when idle, outputs enough power to sustain itself in a storm and has a 100% chance to attract a lightning bolt. Can attract lightning at a {0}% chance when overwhelmed.</SSLR.NormalMode>
+  <SSLR.FastMode>Fast cooldown mode(Click to change modes): Cools down 4x faster than normal but consumes triple the amount of power. Has a 100% chance to attract a lightning bolt. Can attract lightning at a {0}% chance when overwhelmed.</SSLR.FastMode>
+</LanguageData>
