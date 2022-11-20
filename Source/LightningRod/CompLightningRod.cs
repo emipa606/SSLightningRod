@@ -128,18 +128,18 @@ internal class CompLightningRod : CompPowerTrader
         switch (ToggleMode)
         {
             case 1:
-                returnstr = "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2),
+                returnstr = "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString(),
                     CooldownPercentPowerSave);
                 break;
             case 2:
-                returnstr = "SSLR.NormalMode".Translate(Math.Round((decimal)100 / Powersavechance, 2));
+                returnstr = "SSLR.NormalMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString());
                 break;
             case 3:
-                returnstr = "SSLR.FastMode".Translate(Math.Round((decimal)100 / Powersavechance, 2));
+                returnstr = "SSLR.FastMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString());
                 break;
             default:
                 ToggleMode = 1;
-                returnstr = "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2),
+                returnstr = "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString(),
                     CooldownPercentPowerSave);
                 break;
         }

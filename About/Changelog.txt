@@ -1,5 +1,8 @@
 # Changelog for SSLightningRod
 
+1.4.2 - Rewrote a lot of the harmony-part to make it work with the changed weather code. Should now work as intended
+
+
 1.4.1 - Mod updated for 1.4 and passed autotests.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

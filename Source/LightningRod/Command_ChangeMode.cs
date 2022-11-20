@@ -7,11 +7,10 @@ namespace SSLightningRod;
 
 public class Command_ChangeMode : Command
 {
+    public readonly SoundDef turnOnSound = SoundDefOf.Checkbox_TurnedOn;
     public Func<int> Mode;
 
     public Action toggleAction;
-
-    public SoundDef turnOnSound = SoundDefOf.Checkbox_TurnedOn;
 
     public override SoundDef CurActivateSound => turnOnSound;
 
