@@ -10,4 +10,5 @@
   <SSLR.PowerSaveMode>Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a {0}% chance to attract a lightning bolt and cools down {1}% slower</SSLR.PowerSaveMode>
   <SSLR.NormalMode>Normal mode(Click to change modes): Consumes a bit of power when idle, outputs enough power to sustain itself in a storm and has a 100% chance to attract a lightning bolt. Can attract lightning at a {0}% chance when overwhelmed.</SSLR.NormalMode>
   <SSLR.FastMode>Fast cooldown mode(Click to change modes): Cools down 4x faster than normal but consumes triple the amount of power. Has a 100% chance to attract a lightning bolt. Can attract lightning at a {0}% chance when overwhelmed.</SSLR.FastMode>
+  <SSLR.CannotChangeMode>Cannot change mode now, rod still discharging.</SSLR.CannotChangeMode>
 </LanguageData>
