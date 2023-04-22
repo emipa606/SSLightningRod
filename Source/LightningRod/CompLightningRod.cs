@@ -180,7 +180,7 @@ internal class CompLightningRod : CompPowerTrader
                 {
                     if (LightningRodCooldown > 0)
                     {
-                        Messages.Message("Cannot change mode now, rod still discharging.",
+                        Messages.Message("SSLR.CannotChangeMode".Translate(),
                             MessageTypeDefOf.RejectInput);
                     }
                     else
