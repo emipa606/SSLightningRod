@@ -1,5 +1,9 @@
 # Changelog for SSLightningRod
 
+1.4.3 - Fixed the missing translation, thanks to Reiquard!.
+Used DeepL to update translations for ChineseSimplified, French, German
+
+
 1.4.2 - Rewrote a lot of the harmony-part to make it work with the changed weather code. Should now work as intended
 
 

@@ -13,18 +13,7 @@ internal class CompLightningRod : CompPowerTrader
     public bool notOverwhelmed = true;
     public int ToggleMode = 1;
 
-    public int StrikesHitBase
-    {
-        get
-        {
-            if (Properties.strikesHitBase)
-            {
-                return 0;
-            }
-
-            return 1;
-        }
-    }
+    public int StrikesHitBase => Properties.strikesHitBase ? 0 : 1;
 
     public float CooldownSpeed => Properties.cooldownSpeed;
     public float ChargeCapacity => Properties.chargeCapacity;
@@ -167,28 +156,30 @@ internal class CompLightningRod : CompPowerTrader
             yield break;
         }
 
-        if (parent.Faction == Faction.OfPlayer)
+        if (parent.Faction != Faction.OfPlayer)
         {
-            yield return new Command_ChangeMode
-            {
-                hotKey = KeyBindingDefOf.Misc8,
-                icon = ContentFinder<Texture2D>.Get("RotRight_Green"),
-                defaultLabel = "SSLR.ChangeMode".Translate(),
-                defaultDesc = ModeDescs(),
-                Mode = () => ToggleMode,
-                toggleAction = () =>
-                {
-                    if (LightningRodCooldown > 0)
-                    {
-                        Messages.Message("SSLR.CannotChangeMode".Translate(),
-                            MessageTypeDefOf.RejectInput);
-                    }
-                    else
-                    {
-                        ToggleMode += 1;
-                    }
-                }
-            };
+            yield break;
         }
+
+        yield return new Command_ChangeMode
+        {
+            hotKey = KeyBindingDefOf.Misc8,
+            icon = ContentFinder<Texture2D>.Get("RotRight_Green"),
+            defaultLabel = "SSLR.ChangeMode".Translate(),
+            defaultDesc = ModeDescs(),
+            Mode = () => ToggleMode,
+            toggleAction = () =>
+            {
+                if (LightningRodCooldown > 0)
+                {
+                    Messages.Message("SSLR.CannotChangeMode".Translate(),
+                        MessageTypeDefOf.RejectInput);
+                }
+                else
+                {
+                    ToggleMode += 1;
+                }
+            }
+        };
     }
 }
