@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <LightningRodBasic.label>молниеотвод</LightningRodBasic.label>
   <LightningRodBasic.description>Элементарный молниеотвод для защиты окрестностей от ударов молнии.\nПеренаправляет энергию молнии в землю.\n\nПосле активного использования будет нуждаться в ремонте.</LightningRodBasic.description>

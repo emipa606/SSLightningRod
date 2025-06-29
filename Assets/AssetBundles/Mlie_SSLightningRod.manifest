@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 3301832076
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3229fbd3ca7d00c12241642bd883c3b0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 3229fbd3ca7d00c12241642bd883c3b0
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.SSLightningRod/Textures/Achievements/SS_VeryVeryFrightening.png
+- Assets/Data/Mlie.SSLightningRod/Textures/lightning-rod-basic.png
+- Assets/Data/Mlie.SSLightningRod/Textures/lightning-rod-basic_m.png
+- Assets/Data/Mlie.SSLightningRod/Textures/Achievements/AchievmentsBG.png
+- Assets/Data/Mlie.SSLightningRod/Textures/Achievements/SS_ThunderboltAndLightning.png
+- Assets/Data/Mlie.SSLightningRod/Textures/lightning-rod_m.png
+- Assets/Data/Mlie.SSLightningRod/Textures/lightning-rod-basic_MenuIcon.png
+- Assets/Data/Mlie.SSLightningRod/Textures/RotRight_Green.png
+- Assets/Data/Mlie.SSLightningRod/Textures/lightning-rod.png
+- Assets/Data/Mlie.SSLightningRod/Textures/lightning-rod_MenuIcon.png
+Dependencies: []

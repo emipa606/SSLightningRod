@@ -26,32 +26,16 @@ public static class Main
                 continue;
             }
 
-            if (getAll)
-            {
-                activeRods.Add(building);
-                continue;
-            }
-
-            if (comp.IsBasic && Rand.Bool)
-            {
-                activeRods.Add(building);
-                continue;
-            }
-
-            if (comp is { notOverwhelmed: true, PowerOn: true } && comp.ToggleMode != 1)
-            {
-                activeRods.Add(building);
-                continue;
-            }
-
-            if (comp is { notOverwhelmed: true, PowerOn: true, ToggleMode: 1 } &&
+            if (getAll || comp.IsBasic && Rand.Bool ||
+                comp is { NotOverwhelmed: true, PowerOn: true } && comp.ToggleMode != 1 ||
+                comp is { NotOverwhelmed: true, PowerOn: true, ToggleMode: 1 } &&
                 Rand.Range(1, comp.Powersavechance) == 1)
             {
                 activeRods.Add(building);
                 continue;
             }
 
-            if (comp is { notOverwhelmed: false, PowerOn: true } && comp.ToggleMode != 1 &&
+            if (comp is { NotOverwhelmed: false, PowerOn: true } && comp.ToggleMode != 1 &&
                 Rand.Range(1, comp.Powersavechance) == 1)
             {
                 activeRods.Add(building);
@@ -75,8 +59,8 @@ public static class Main
         var strikesHitBase = currentRod.TryGetComp<CompLightningRod>().StrikesHitBase;
         var num1 = currentRod.TryGetComp<CompLightningRod>().FakeZIndex;
         var num2 = rand.Next((int)num1 - strikesHitBase);
-        var intvec = list[0];
-        intvec.z += num2 + strikesHitBase;
-        return intvec;
+        var strikePoint = list[0];
+        strikePoint.z += num2 + strikesHitBase;
+        return strikePoint;
     }
 }

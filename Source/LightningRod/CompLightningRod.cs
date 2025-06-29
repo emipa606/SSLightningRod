@@ -10,22 +10,22 @@ namespace SSLightningRod;
 internal class CompLightningRod : CompPowerTrader
 {
     private float LightningRodCooldown;
-    public bool notOverwhelmed = true;
+    public bool NotOverwhelmed = true;
     public int ToggleMode = 1;
 
     public int StrikesHitBase => Properties.strikesHitBase ? 0 : 1;
 
-    public float CooldownSpeed => Properties.cooldownSpeed;
-    public float ChargeCapacity => Properties.chargeCapacity;
+    private float CooldownSpeed => Properties.cooldownSpeed;
+    private float ChargeCapacity => Properties.chargeCapacity;
     public float FakeZIndex => Properties.fakeZIndex;
     public int Powersavechance => Properties.oneInXChanceHitPowerSave;
-    public float PowerGainDischarge => Properties.powerGainDischarge;
-    public float CooldownPercentPowerSave => Properties.cooldownPercentPowerSave;
+    private float PowerGainDischarge => Properties.powerGainDischarge;
+    private float CooldownPercentPowerSave => Properties.cooldownPercentPowerSave;
     public bool IsBasic => Properties.isBasic;
     private CompProperties_LightningRod Properties => (CompProperties_LightningRod)props;
 
 
-    public float PowerOutputFromMode()
+    private float powerOutputFromMode()
     {
         float num;
         switch (ToggleMode)
@@ -60,9 +60,9 @@ internal class CompLightningRod : CompPowerTrader
         var num = ToggleMode == 3 ? CooldownSpeed * 4 : num2;
         LightningRodCooldown = LightningRodCooldown <= 0f ? 0f : LightningRodCooldown - num;
         powerOutputInt = LightningRodCooldown > 0f
-            ? PowerOutputFromMode() + PowerGainDischarge
-            : PowerOutputFromMode();
-        notOverwhelmed = LightningRodCooldown < ChargeCapacity;
+            ? powerOutputFromMode() + PowerGainDischarge
+            : powerOutputFromMode();
+        NotOverwhelmed = LightningRodCooldown < ChargeCapacity;
     }
 
     public void Hit()
@@ -76,7 +76,7 @@ internal class CompLightningRod : CompPowerTrader
 
         if (LightningRodCooldown > ChargeCapacity)
         {
-            notOverwhelmed = false;
+            NotOverwhelmed = false;
         }
     }
 
@@ -94,7 +94,7 @@ internal class CompLightningRod : CompPowerTrader
             : "SSLR.PowerOutput".Translate(powerOutputInt);
         str.AppendLine(str1);
         var str2 = LightningRodCooldown <= 0 ? "SSLR.Standby".Translate() :
-            notOverwhelmed ? "SSLR.Discharging".Translate() : "SSLR.Overwhelmed".Translate();
+            NotOverwhelmed ? "SSLR.Discharging".Translate() : "SSLR.Overwhelmed".Translate();
         str.AppendLine(str2);
         if (!PowerOn)
         {
@@ -111,29 +111,22 @@ internal class CompLightningRod : CompPowerTrader
         return str.ToString();
     }
 
-    public string ModeDescs()
+    private string modeDescriptions()
     {
-        string returnstr;
         switch (ToggleMode)
         {
             case 1:
-                returnstr = "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString(),
+                return "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString(),
                     CooldownPercentPowerSave);
-                break;
             case 2:
-                returnstr = "SSLR.NormalMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString());
-                break;
+                return "SSLR.NormalMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString());
             case 3:
-                returnstr = "SSLR.FastMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString());
-                break;
+                return "SSLR.FastMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString());
             default:
                 ToggleMode = 1;
-                returnstr = "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString(),
+                return "SSLR.PowerSaveMode".Translate(Math.Round((decimal)100 / Powersavechance, 2).ToString(),
                     CooldownPercentPowerSave);
-                break;
         }
-
-        return returnstr;
     }
 
     public override void PostExposeData()
@@ -141,7 +134,7 @@ internal class CompLightningRod : CompPowerTrader
         base.PostExposeData();
         Scribe_Values.Look(ref ToggleMode, "ToggleMode", 1);
         Scribe_Values.Look(ref LightningRodCooldown, "Cooldown");
-        Scribe_Values.Look(ref notOverwhelmed, "notOverwhelmed", true);
+        Scribe_Values.Look(ref NotOverwhelmed, "notOverwhelmed", true);
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -166,7 +159,7 @@ internal class CompLightningRod : CompPowerTrader
             hotKey = KeyBindingDefOf.Misc8,
             icon = ContentFinder<Texture2D>.Get("RotRight_Green"),
             defaultLabel = "SSLR.ChangeMode".Translate(),
-            defaultDesc = ModeDescs(),
+            defaultDesc = modeDescriptions(),
             Mode = () => ToggleMode,
             toggleAction = () =>
             {

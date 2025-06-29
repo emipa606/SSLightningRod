@@ -7,33 +7,26 @@ namespace SSLightningRod;
 
 public class Command_ChangeMode : Command
 {
-    public readonly SoundDef turnOnSound = SoundDefOf.Checkbox_TurnedOn;
+    private readonly SoundDef turnOnSound = SoundDefOf.Checkbox_TurnedOn;
     public Func<int> Mode;
 
     public Action toggleAction;
 
     public override SoundDef CurActivateSound => turnOnSound;
 
-    public string Abbrevs(int a)
+    private static string abbrevs(int a)
     {
-        string returnstr;
         switch (a)
         {
             case 1:
-                returnstr = "PS";
-                break;
+                return "PS";
             case 2:
-                returnstr = "NM";
-                break;
+                return "NM";
             case 3:
-                returnstr = "FC";
-                break;
+                return "FC";
             default:
-                returnstr = "PS";
-                break;
+                return "PS";
         }
-
-        return returnstr;
     }
 
     public override void ProcessInput(Event ev)
@@ -47,14 +40,14 @@ public class Command_ChangeMode : Command
         var result = base.GizmoOnGUI(loc, maxWidth, parms);
         var rect = new Rect(loc.x, loc.y, GetWidth(maxWidth), 75f);
         var position = new Rect(rect.x + rect.width - 24f, rect.y, 24f, 24f);
-        var modestr = Abbrevs(Mode());
+        var modStr = abbrevs(Mode());
         Text.Font = GameFont.Tiny;
-        Widgets.Label(position, modestr);
+        Widgets.Label(position, modStr);
         return result;
     }
 
     public override bool InheritInteractionsFrom(Gizmo other)
     {
-        return other is Command_ChangeMode command_Toggle && command_Toggle.Mode() == Mode();
+        return other is Command_ChangeMode commandToggle && commandToggle.Mode() == Mode();
     }
 }

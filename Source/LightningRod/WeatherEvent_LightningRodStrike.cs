@@ -7,7 +7,7 @@ using Verse.Sound;
 
 namespace SSLightningRod;
 
-[HarmonyPatch(typeof(WeatherEvent_LightningStrike), "DoStrike")]
+[HarmonyPatch(typeof(WeatherEvent_LightningStrike), nameof(WeatherEvent_LightningStrike.DoStrike))]
 public static class WeatherEvent_LightningRodStrike
 {
     [HarmonyPriority(Priority.Last)]

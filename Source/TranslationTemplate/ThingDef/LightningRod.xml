@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: powered lightning rod -->
+  <LightningRod.label>powered lightning rod</LightningRod.label>
+  <!-- EN: A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed. -->
+  <LightningRod.description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.
+
+Requires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</LightningRod.description>
+  <!-- EN: lightning rod -->
+  <LightningRodBasic.label>lightning rod</LightningRodBasic.label>
+  <!-- EN: A basic lightning rod for map-wide protection from lightning strikes.\n\nDoes not produce power and will need repairs after extended use. -->
+  <LightningRodBasic.description>A basic lightning rod for map-wide protection from lightning strikes.
+
+Does not produce power and will need repairs after extended use.</LightningRodBasic.description>
+</LanguageData>
